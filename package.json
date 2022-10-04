@@ -9,10 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/jest": "^29.1.1",
+    "@types/node": "^18.8.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
     "highcharts": "^10.2.1",
+    "highcharts-drilldown": "^0.1.7",
+    "highcharts-react-official": "^3.1.0",
+    "highcharts-sunburst": "^0.1.7",
     "next": "12.3.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "typescript": "^4.8.4"
   },
   "devDependencies": {
     "eslint": "8.24.0",
