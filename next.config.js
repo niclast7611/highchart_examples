@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
-
-module.exports = nextConfig
+  env: {
+    TEAM_COLOR: process.env.TEAM_COLOR,
+  },
+};
+module.exports = nextConfig;
