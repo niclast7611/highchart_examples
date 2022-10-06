@@ -10,6 +10,9 @@ export default function Home() {
       <Link href="/charts/PageTwo">
         <button type="button">Page Two</button>
       </Link>
+      <Link href="/charts/Test">
+        <button type="button">Test</button>
+      </Link>
     </div>
   );
 }
