@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    TEAM_COLOR: process.env.TEAM_COLOR,
+    MLB_KEY: process.env.MLB_KEY,
   },
 };
 module.exports = nextConfig;
