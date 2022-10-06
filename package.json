@@ -13,6 +13,7 @@
     "@types/node": "^18.8.0",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "axios": "^1.0.0",
     "highcharts": "^10.2.1",
     "highcharts-drilldown": "^0.1.7",
     "highcharts-react-official": "^3.1.0",

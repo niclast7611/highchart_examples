@@ -2,6 +2,8 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
-
-module.exports = nextConfig
+  env: {
+    MLB_KEY: process.env.MLB_KEY,
+  },
+};
+module.exports = nextConfig;
