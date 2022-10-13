@@ -2,7 +2,11 @@ import React from "react";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import sunburst from "highcharts/modules/sunburst.js";
-sunburst(Highcharts);
+import HomeButton from "../../components/HomeButton";
+
+if (typeof Highcharts === "object") {
+  sunburst(Highcharts);
+}
 
 const data = [
   {
@@ -354,8 +358,11 @@ const options = {
 
 export default function PageTwo() {
   return (
-    <div id="container">
-      <HighchartsReact highcharts={Highcharts} options={options} />
+    <div>
+      <div className="px-4 pt-6 bg-white rounded-lg shadow-card sm:px-6 w-fit mx-auto my-16 ">
+        <HighchartsReact highcharts={Highcharts} options={options} />
+      </div>
+      <HomeButton />
     </div>
   );
 }

@@ -37,17 +37,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-    // <div className="index-container">
-    //   <h1 id="index-title">HighChart Examples</h1>
-    //   <Link href="/charts/PageOne">
-    //     <button type="button">Page One</button>
-    //   </Link>
-    //   <Link href="/charts/PageTwo">
-    //     <button type="button">Page Two</button>
-    //   </Link>
-    //   <Link href="/charts/Test">
-    //     <button type="button">Test</button>
-    //   </Link>
-    // </div>
   );
 }

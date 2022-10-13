@@ -2,19 +2,24 @@ import React from "react";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown.js";
+import HomeButton from "../../components/HomeButton";
 
-drilldown(Highcharts);
+if (typeof Highcharts === "object") {
+  drilldown(Highcharts);
+}
 
 const options = {
   chart: {
     type: "column",
+    height: 500,
+    width: 500,
   },
   title: {
-    align: "left",
+    align: "center",
     text: "Browser market shares. January, 2022",
   },
   subtitle: {
-    align: "left",
+    align: "center",
     text: 'Click the columns to view versions. Source: <a href="http://statcounter.com" target="_blank">statcounter.com</a>',
   },
   accessibility: {
@@ -181,134 +186,38 @@ const options = {
         ],
       },
     ],
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 400,
+          },
+          chartOptions: {
+            series: [
+              {},
+              {
+                id: "versions",
+                dataLabels: {
+                  enabled: false,
+                },
+              },
+            ],
+          },
+        },
+      ],
+    },
   },
 };
 
-// const options = {
-//   chart: {
-//     type: "areaspline",
-//     height: 210,
-//     backgroundColor: "transparent",
-//   },
-//   title: {
-//     text: "",
-//     align: "left",
-//     style: {
-//       color: "#000000",
-//       fontWeight: "bold",
-//     },
-//   },
-//   legend: {
-//     align: "right",
-//     verticalAlign: "top",
-//     floating: true,
-//     squareSymbol: false,
-//     symbolRadius: 0,
-//     symbolWidth: 0,
-//     symbolHeight: 0,
-//     itemStyle: {
-//       fontWeight: "light",
-//     },
-//     useHTML: true,
-//     labelFormatter: function () {
-//       return (
-//         '<div><div class="inline-block mb-0.5 mr-1.5" style="width:23px;height:3px;background-color:' +
-//         this.color +
-//         '"></div>' +
-//         this.name +
-//         "</div>"
-//       );
-//     },
-//   },
-//   xAxis: {
-//     type: "datetime",
-//     categories: [
-//       Date.UTC(2021, 9, 1),
-//       Date.UTC(2021, 9, 2),
-//       Date.UTC(2021, 9, 3),
-//       Date.UTC(2021, 9, 4),
-//       Date.UTC(2021, 9, 5),
-//       Date.UTC(2021, 9, 6),
-//       Date.UTC(2021, 9, 7),
-//     ],
-//     labels: {
-//       align: "center",
-//       formatter() {
-//         return Highcharts.dateFormat("%m/%e", this.value);
-//       },
-//     },
-//   },
-//   yAxis: {
-//     title: {
-//       text: null,
-//     },
-//     labels: {
-//       formatter: function () {
-//         return "$" + this.axis.defaultLabelFormatter.call(this);
-//       },
-//     },
-//   },
-//   tooltip: {
-//     shared: true,
-//     useHTML: true,
-//     borderColor: "#D3D4D9",
-//     borderRadius: 15,
-//     formatter: function (tooltip) {
-//       const header = Highcharts.dateFormat("%B %e", this.x) + `<br/>`;
-//       return header + tooltip.bodyFormatter(this.points).join("");
-//     },
-//     pointFormat: '<b class="ml-2.5" style="color:white">${point.y}</b><br/>',
-//     backgroundColor: "white",
-//     style: {
-//       fontSize: "12px",
-//       fontWeight: 700,
-//     },
-//   },
-//   credits: {
-//     enabled: false,
-//   },
-//   plotOptions: {
-//     series: {
-//       pointPlacement: "on",
-//     },
-//     areaspline: {
-//       fillOpacity: 0.1,
-//     },
-//   },
-//   series: [
-//     {
-//       name: "Prior Period",
-//       data: [100, 220, 400, 80, 380, 150, 110],
-//       color: "#FCD15B",
-//       lineColor: "#FCD15B",
-//       marker: {
-//         symbol: "circle",
-//         fillColor: "#FFFFFF",
-//         lineWidth: 2,
-//         lineColor: "#FCD15B",
-//       },
-//     },
-//     {
-//       name: "Current Period",
-//       data: [100, 270, 600, 100, 590, 150, 580],
-//       color: "#FF792A",
-//       lineColor: "#FF792A",
-//       marker: {
-//         symbol: "circle",
-//         fillColor: "#FFFFFF",
-//         lineWidth: 2,
-//         lineColor: "#FF792A",
-//       },
-//     },
-//   ],
-//   exporting: {
-//     enabled: false,
-//   },
-// };
 export default function PageOne() {
   return (
-    <div id="container">
-      <HighchartsReact highcharts={Highcharts} options={options} />
+    <div>
+      <div className="px-4 pt-6 bg-white rounded-lg shadow-card sm:px-6 w-fit mx-auto my-16 ">
+        <div id="container">
+          <HighchartsReact highcharts={Highcharts} options={options} />
+        </div>
+      </div>
+      <HomeButton />
     </div>
   );
 }

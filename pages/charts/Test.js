@@ -4,7 +4,10 @@ import { useEffect, useState } from "react";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import sunburst from "highcharts/modules/sunburst.js";
-sunburst(Highcharts);
+
+if (typeof Highcharts === "object") {
+  sunburst(Highcharts);
+}
 
 export default function Test() {
   const [colorData, setColorData] = useState([]);
