@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import sunburst from "highcharts/modules/sunburst.js";
+import Card from "../../components/Card";
+import HomeButton from "../../components/HomeButton";
 
 if (typeof Highcharts === "object") {
   sunburst(Highcharts);
@@ -12,62 +14,66 @@ if (typeof Highcharts === "object") {
 export default function Test() {
   const [colorData, setColorData] = useState([]);
   const [winsAndLosses, setWinsAndLosses] = useState([]);
-  const [final, setFinal] = useState([]);
+
+  const fetchData = async () => {
+    const requestOne = axios.get(
+      "https://api.sportsdata.io/v3/mlb/scores/json/teams",
+      {
+        params: { key: process.env.MLB_KEY },
+      }
+    );
+    const requestTwo = axios.get(
+      "https://api.sportsdata.io/v3/mlb/scores/json/Standings/2022",
+      {
+        params: { key: process.env.MLB_KEY },
+      }
+    );
+
+    await axios
+      .all([requestOne, requestTwo])
+      .then(
+        axios.spread((...responses) => {
+          const responseOne = responses[0].data;
+          const responseTwo = responses[1].data;
+          setColorData(responseOne);
+          setWinsAndLosses(responseTwo);
+        })
+      )
+      .catch((errors) => {
+        console.log(errors);
+      });
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const requestOne = await axios.get(
-        "https://api.sportsdata.io/v3/mlb/scores/json/teams",
-        {
-          params: { key: process.env.MLB_KEY },
-        }
-      );
-      const requestTwo = await axios.get(
-        "https://api.sportsdata.io/v3/mlb/scores/json/Standings/2022",
-        {
-          params: { key: process.env.MLB_KEY },
-        }
-      );
-
-      axios
-        .all([requestOne, requestTwo])
-        .then(
-          axios.spread((...responses) => {
-            const responseOne = responses[0].data;
-            const responseTwo = responses[1].data.map((stats) => {
-              return {
-                city: stats.City,
-                parent: `${stats.League} ${stats.Division}`,
-                divisionRank: stats.DivisionRank,
-                league: stats.League,
-                leagueRank: stats.LeagueRank,
-                losses: stats.Losses,
-                name: stats.Name,
-                teamID: stats.TeamID,
-                value: stats.Wins,
-              };
-            });
-            setColorData(responseOne.sort((a, b) => a.TeamID - b.TeamID));
-            setWinsAndLosses(responseTwo.sort((a, b) => a.teamID - b.teamID));
-          })
-        )
-        .catch((errors) => {
-          console.log(errors);
-        });
-    };
     fetchData();
-    finalObject();
   }, []);
 
-  const finalObject = () => {
-    const final = winsAndLosses.map((team, index) => {
+  const finalObject = (necessaryData) => {
+    const newWinsAndLosses = winsAndLosses.map((stats) => {
       return {
-        ...team,
-        color: `#${colorData[index].PrimaryColor}`,
-        secondaryColor: `#${colorData[index].SecondaryColor}`,
+        city: stats.City,
+        parent: `${stats.League} ${stats.Division}`,
+        divisionRank: stats.DivisionRank,
+        league: stats.League,
+        leagueRank: stats.LeagueRank,
+        losses: stats.Losses,
+        name: stats.Name,
+        teamID: stats.TeamID,
+        value: stats.Wins,
       };
     });
-    setFinal(final);
+    const sortedColorData = colorData.sort((a, b) => a.teamID - b.teamID);
+    const sortedNewWinsAndLosses = newWinsAndLosses.sort(
+      (a, b) => a.teamID - b.teamID
+    );
+    const final = sortedNewWinsAndLosses.map((team, index) => {
+      return {
+        ...team,
+        color: `#${sortedColorData[index].PrimaryColor}`,
+        secondaryColor: `#${sortedColorData[index].SecondaryColor}`,
+      };
+    });
+    return [...necessaryData, ...final];
   };
   const incomingData = [
     {
@@ -123,7 +129,6 @@ export default function Test() {
       name: "NL Central",
     },
   ];
-  const finalDataNeeded = [...incomingData, ...final];
   const options = {
     chart: {
       height: 600,
@@ -138,7 +143,7 @@ export default function Test() {
     series: [
       {
         type: "sunburst",
-        data: finalDataNeeded,
+        data: colorData && winsAndLosses ? finalObject(incomingData) : null,
         allowDrillToNode: true,
         cursor: "pointer",
         rotationMode: "circular",
@@ -195,10 +200,12 @@ export default function Test() {
       },
     ],
   };
-
   return (
     <div>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <Card
+        content={<HighchartsReact highcharts={Highcharts} options={options} />}
+      />
+      <HomeButton />
     </div>
   );
 }

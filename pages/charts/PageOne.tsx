@@ -3,6 +3,7 @@ import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import drilldown from "highcharts/modules/drilldown.js";
 import HomeButton from "../../components/HomeButton";
+import Card from "../../components/Card";
 
 if (typeof Highcharts === "object") {
   drilldown(Highcharts);
@@ -212,11 +213,9 @@ const options = {
 export default function PageOne() {
   return (
     <div>
-      <div className="px-4 pt-6 bg-white rounded-lg shadow-card sm:px-6 w-fit mx-auto my-16 ">
-        <div id="container">
-          <HighchartsReact highcharts={Highcharts} options={options} />
-        </div>
-      </div>
+      <Card
+        content={<HighchartsReact highcharts={Highcharts} options={options} />}
+      />
       <HomeButton />
     </div>
   );
