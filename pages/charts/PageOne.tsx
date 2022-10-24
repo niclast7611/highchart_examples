@@ -259,7 +259,7 @@ export default function PageOne() {
       <Card
         content={<HighchartsReact highcharts={Highcharts} options={options} />}
       />
-      <HomeButton />
+      <HomeButton href="/" buttonTitle="Home" />
     </div>
   );
 }

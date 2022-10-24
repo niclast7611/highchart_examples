@@ -1,4 +1,5 @@
 import Link from "next/link";
+import HomeButton from "../components/HomeButton";
 
 export default function Home() {
   return (
@@ -10,30 +11,18 @@ export default function Home() {
           </p>
         </h1>
         <div class="mt-5 max-w-content mx-auto flex justify-center items-center md:mt-8">
-          <Link href="/charts/PageOne">
-            <button
-              type="button"
-              class="inline-flex items-center justify-center h-12 mr-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-            >
-              Browser DrillDown Chart
-            </button>
-          </Link>
-          <Link href="/charts/PageTwo">
-            <button
-              type="button"
-              class="inline-flex items-center justify-center h-12 mr-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-            >
-              Hard Coded MLB Sunburst
-            </button>
-          </Link>
-          <Link href="/charts/Test">
-            <button
-              type="button"
-              class="inline-flex items-center justify-center h-12 mr-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-            >
-              MLB Sunburst w/ API
-            </button>
-          </Link>
+          <HomeButton
+            href="/charts/PageOne"
+            buttonTitle="Browser DrillDown Chart"
+          />
+          <HomeButton
+            href="/charts/PageTwo"
+            buttonTitle="Hard Coded MLB Sunburst"
+          />
+          <HomeButton href="/charts/Test" buttonTitle=" MLB Sunburst w/ API" />
+          <HomeButton href="/charts/Spline" buttonTitle="Spline Chart" />
+
+          {/* class="inline-flex items-center justify-center h-12 mr-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" */}
         </div>
       </div>
     </div>
