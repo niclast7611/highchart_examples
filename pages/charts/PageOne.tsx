@@ -8,6 +8,42 @@ import Card from "../../components/Card";
 if (typeof Highcharts === "object") {
   drilldown(Highcharts);
 }
+// const options = {
+//   chart: {
+//     type: "column",
+//   },
+//   xAxis: {
+//     categories: [
+//       "Jan",
+//       "Feb",
+//       "Mar",
+//       "Apr",
+//       "May",
+//       "Jun",
+//       "Jul",
+//       "Aug",
+//       "Sep",
+//       "Oct",
+//       "Nov",
+//       "Dec",
+//     ],
+//   },
+
+//   plotOptions: {
+//     series: {
+//       borderRadius: 5,
+//     },
+//   },
+
+//   series: [
+//     {
+//       data: [
+//         29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1,
+//         95.6, 54.4,
+//       ],
+//     },
+//   ],
+// };
 
 const options = {
   chart: {
@@ -15,6 +51,7 @@ const options = {
     height: 500,
     width: 500,
   },
+
   title: {
     align: "center",
     text: "Browser market shares. January, 2022",
@@ -28,13 +65,18 @@ const options = {
       enabled: true,
     },
   },
+
   xAxis: {
     type: "category",
   },
   yAxis: {
+    label: {
+      enable: false,
+    },
     title: {
       text: "Total percent market share",
     },
+    visible: false,
   },
   legend: {
     enabled: false,
@@ -64,6 +106,7 @@ const options = {
           name: "Chrome",
           y: 63.06,
           drilldown: "Chrome",
+          color: "red",
         },
         {
           name: "Safari",
