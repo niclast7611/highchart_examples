@@ -23,7 +23,6 @@ const options = {
     floating: true,
     borderWidth: 1,
     // backgroundColor: "#FFFFFF",
-    theme: "Brand Dark",
   },
   yAxis: {
     title: {
