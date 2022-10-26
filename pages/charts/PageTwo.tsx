@@ -362,7 +362,7 @@ export default function PageTwo() {
       <Card
         content={<HighchartsReact highcharts={Highcharts} options={options} />}
       />
-      <HomeButton />
+      <HomeButton href="/" buttonTitle="Home" />
     </div>
   );
 }

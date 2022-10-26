@@ -205,7 +205,7 @@ export default function Test() {
       <Card
         content={<HighchartsReact highcharts={Highcharts} options={options} />}
       />
-      <HomeButton />
+      <HomeButton href="/" buttonTitle="Home" />
     </div>
   );
 }
