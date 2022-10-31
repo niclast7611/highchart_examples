@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/charts/Test.tsx"  ],
+, "pages/charts/Test.tsx", "pages/charts/Donut.js"  ],
   "exclude": [
     "node_modules"
   ]

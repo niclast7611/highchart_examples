@@ -25,6 +25,7 @@ export default function Home() {
             href="/charts/RMSpline"
             buttonTitle="RipeMetrics Copycat Spline Chart"
           />
+          <HomeButton href="/charts/Donut" buttonTitle="Donut" />
 
           {/* class="inline-flex items-center justify-center h-12 mr-6 bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" */}
         </div>
